@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {MemberModel} from "../../../core/models/member.model";
 
 @Component({
   selector: 'app-item-card-person',
@@ -9,5 +10,5 @@ import { Component } from '@angular/core';
 })
 export class ItemCardPersonComponent {
 
-
+  @Input() member!: MemberModel
 }
