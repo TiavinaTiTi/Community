@@ -11,10 +11,10 @@
       <div class="d-flex flex-column ps-1">
         <div class="card-title mb-0 fw-semibold">
           <a href="" class="text-decoration-none text-warning">
-            {{ member.pseudo }}
+            {{ member.pseudo | titlecase}}
           </a>
         </div>
-        <p class="fs-7 mb-0">{{ member.fullName }}</p>
+        <p class="fs-7 mb-0">{{ formatFullName(member.fullName) }}</p>
       </div>
     </div>
   </div>

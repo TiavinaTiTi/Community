@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
 import {ItemPublicationComponent} from "../item-publication/item-publication.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ItemCardPersonComponent} from "../../shared/components/item-card-person/item-card-person.component";
 import {MemberModel} from "../../core/models/member.model";
+import {MemberService} from "../../shared/services/memberService/member.service";
+import {Observable, of} from "rxjs";
 
 @Component({
   selector: 'app-team-page',
@@ -18,18 +20,25 @@ import {MemberModel} from "../../core/models/member.model";
   templateUrl: './team-page.component.html',
   styleUrl: './team-page.component.scss'
 })
-export class TeamPageComponent {
+export class TeamPageComponent implements OnInit{
   search: string = ''
+  members$!: Observable<MemberModel[]>;
 
-  members: MemberModel[] = [
-    {id: 1, pseudo: 'Tiavina', fullName: 'RANDRIANOELISON Tiavina Mandimbisoa'},
-    {id: 2, pseudo: 'Dom', fullName: 'DOMINIQUE Marcel Augustin'},
-    {id: 3, pseudo: 'Jass', fullName: 'RANTONIAINA Jaspiere'},
-    {id: 4, pseudo: 'Tiff', fullName: 'RAKOTOMAVO Tiffany'}
+  private memberService: MemberService = inject(MemberService)
 
-  ]
+
+  ngOnInit() {
+    this.getAllMembers()
+  }
+
+  getAllMembers(){
+    this.members$ = this.memberService.getAllMembers()
+  }
 
   searchTraining() {
-
+    setTimeout(()=>{
+      let data = this.memberService.filterMember(this.search)
+      this.members$ = of(data)
+    }, 200)
   }
 }
