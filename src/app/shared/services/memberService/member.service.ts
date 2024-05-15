@@ -12,15 +12,15 @@ export class MemberService {
     {id: 1, pseudo: 'tiavina', fullName: 'randrianoelison tiavina mandimbisoa'},
     {id: 2, pseudo: 'dom', fullName: 'dominique marcel augustin'},
     {id: 3, pseudo: 'jass', fullName: 'rantoniaina jaspiere'},
-    {id: 4, pseudo: 'tiff', fullName: 'rakotomavo tiffany'}
+    {id: 4, pseudo: 'tiff', fullName: 'rakotomavo tiffany'},
   ]
 
   dataInitPage: MemberPageModel = {
     content: this.dataInit,
     pageable: {
       pageNumber: 0,
-      pageSize: 12,
-      totalPages: 1,
+      pageSize: 2,
+      totalPages: 3,
       totalElements: this.dataInit.length
     }
   }

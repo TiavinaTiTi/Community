@@ -7,6 +7,7 @@ import {MemberModel} from "../../core/models/member.model";
 import {MemberService} from "../../shared/services/memberService/member.service";
 import {count, Observable, of} from "rxjs";
 import {MemberPageModel} from "../../core/models/member-page.model";
+import {PageableComponent} from "../../shared/components/pageable/pageable.component";
 
 @Component({
   selector: 'app-team-page',
@@ -17,7 +18,8 @@ import {MemberPageModel} from "../../core/models/member-page.model";
     ReactiveFormsModule,
     FormsModule,
     ItemCardPersonComponent,
-    JsonPipe
+    JsonPipe,
+    PageableComponent
   ],
   templateUrl: './team-page.component.html',
   styleUrl: './team-page.component.scss'
