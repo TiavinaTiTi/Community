@@ -6,26 +6,25 @@
     <input type="text" [(ngModel)]="search" (input)="searchTraining()" class="form-control rounded-pill bg-dark-2 text-white" placeholder="Recherche...">
   </div>
   <div class="row row-cols-md-1">
-    <div class="col-12 col-md-9">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-gap-2">
-        @for(item of members$ | async; track item.pseudo){
-          <app-item-card-person [member]="item"></app-item-card-person>
-        }
+    @if (members$ | async; as members){
+      <div class="col-12 col-md-9">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-gap-2">
+          @for(item of members.content; track $index){
+            <app-item-card-person [member]="item"></app-item-card-person>
+          }
+        </div>
+        <nav aria-label="Pagination" class="mt-2 d-flex justify-content-center">
+          <ul class="pagination pagination-sm mb-0 gap-1">
+            @for (page of pages; track $index){
+              <li class="page-item">
+                <a class="page-link bg-dark-2 border-0 link-light" href="#">1</a>
+              </li>
+            }
+          </ul>
+        </nav>
       </div>
-      <nav aria-label="Pagination" class="mt-2 d-flex justify-content-center">
-        <ul class="pagination pagination-sm mb-0 gap-1">
-          <li class="page-item">
-            <a class="page-link bg-dark-2 border-0 link-light" href="#">1</a>
-          </li>
-          <li class="page-item" aria-current="page">
-            <a class="page-link bg-dark-2 border-0 link-warning" href="#">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link bg-dark-2 border-0 link-light" href="#">3</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+
+    }
     <div class="col-12 col-md-3 d-flex flex-column gap-1 mt-4 mt-md-0">
       <div class="card bg-dark-2">
         <span class="position-absolute end-0 text-secondary fw-normal badge fs-7">

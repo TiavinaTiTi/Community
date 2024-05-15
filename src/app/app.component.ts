@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ChildrenOutletContexts, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {ChildrenOutletContexts, Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {interval, Observable} from "rxjs";
 import {NavComponent} from "./shared/components/nav/nav.component";
 import {HomePageComponent} from "./views/home-page/home-page.component";
@@ -38,25 +38,25 @@ export let fadeAnimations = animation([
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   animations: [
-    /*trigger('fade', [
-      transition(':enter', [
-        useAnimation(fadeAnimations)
-      ]),
-    ]),*/
     slideInAnimation
   ]
 })
 
 
-export class AppComponent{
+export class AppComponent {
 
   contexts = inject(ChildrenOutletContexts)
+  root = inject(Router)
 
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animations']
-  }
+  menus = [
+    {icon: 'bi-house', title: 'home', root: '/home'},
+    {icon: 'bi-people', title: 'team', root: '/team'},
+    {icon: 'bi-clipboard-check', title: 'training', root: '/training'},
+    {icon: 'bi-telephone', title: 'contact', root: '/contact'},
+  ]
 
   getRouteAnimationData() {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
+
 }

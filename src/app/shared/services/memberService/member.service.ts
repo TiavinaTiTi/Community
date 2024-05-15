@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {MemberModel} from "../../../core/models/member.model";
 import {Observable, of} from "rxjs";
+import {MemberPageModel} from "../../../core/models/member-page.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +15,46 @@ export class MemberService {
     {id: 4, pseudo: 'tiff', fullName: 'rakotomavo tiffany'}
   ]
 
-  members: MemberModel[] = []
+  dataInitPage: MemberPageModel = {
+    content: this.dataInit,
+    pageable: {
+      pageNumber: 0,
+      pageSize: 12,
+      totalPages: 1,
+      totalElements: this.dataInit.length
+    }
+  }
 
-  getAllMembers(): Observable<MemberModel[]>{
-    this.members = this.dataInit;
+  members: MemberPageModel = {
+    content: [],
+    pageable: {
+      pageNumber: 0,
+      pageSize: 0,
+      totalPages: 0,
+      totalElements: 0
+    }
+  }
+
+  getAllMembers(): Observable<MemberPageModel>{
+    this.dataInitPage.content = this.dataInit
+    this.members = this.dataInitPage;
+    console.log('getAllMembers')
     return of(this.members)
   }
 
 
   filterMember(inputSearch: string) {
     let member : MemberModel[] = [];
-    const data$ = this.getAllMembers();
+    let structMember: MemberPageModel = this.members;
+    let data$ = this.getAllMembers();
     data$.subscribe({
       next: value => {
-        member = value.filter((value)=> value.fullName.toLowerCase().includes(inputSearch.toLowerCase()) || value.pseudo.toLowerCase().includes(inputSearch.toLowerCase()))
+        member = value.content.filter((value)=> value.fullName.toLowerCase().includes(inputSearch.toLowerCase()) || value.pseudo.toLowerCase().includes(inputSearch.toLowerCase()))
       }
     })
-    return member;
+    structMember.content = member
+    console.log('filterMember')
+    return of(structMember);
   }
 
 }

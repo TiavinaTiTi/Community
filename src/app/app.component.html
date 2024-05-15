@@ -4,41 +4,13 @@
       <span class="bi-slack"></span>
     </a>
     <div class="d-flex flex-lg-column align-items-center gap-2">
-      <div class="nav-item">
-        <a routerLink="/home" routerLinkActive="link-warning" class="navbar-link text-decoration-none btn btn-dark bg-transparent border-0">
-          <i class="bi-house"></i>
-        </a>
-      </div>
-      <div class="nav-item">
-        <a routerLink="/team" routerLinkActive="link-warning" class="navbar-link btn btn-dark bg-transparent border-0">
-          <i class="bi-people"></i>
-        </a>
-      </div>
-      <div class="nav-item">
-        <a routerLink="/training" routerLinkActive="link-warning" class="navbar-link btn btn-dark bg-transparent border-0">
-          <i class="bi-clipboard-check"></i>
-        </a>
-      </div>
-      <div class="nav-item">
-        <a routerLink="/contact" routerLinkActive="link-warning" class="navbar-link btn btn-dark bg-transparent border-0 ">
-          <i class="bi-telephone"></i>
-        </a>
-      </div>
-      <!--<div class="nav-item">
-        <a routerLink="/isRight" routerLinkActive="link-warning" class="navbar-link text-decoration-none btn btn-dark bg-transparent border-0">
-          <i class="bi-house"></i>
-        </a>
-      </div>
-      <div class="nav-item">
-        <a routerLink="/isLeft" routerLinkActive="link-warning" class="navbar-link text-decoration-none btn btn-dark bg-transparent border-0">
-          <i class="bi-house"></i>
-        </a>
-      </div>
-      <div class="nav-item">
-        <a routerLink="/isMeddle" routerLinkActive="link-warning" class="navbar-link text-decoration-none btn btn-dark bg-transparent border-0">
-          <i class="bi-house"></i>
-        </a>
-      </div>-->
+      @for(item of menus; track $index){
+        <div class="nav-item">
+          <a routerLink="{{ item.root }}" routerLinkActive="link-warning" [routerLinkActiveOptions]="{exact:true}" class="navbar-link text-decoration-none btn btn-dark bg-transparent border-0">
+            <i class="{{ item.icon }}"></i>
+          </a>
+        </div>
+      }
     </div>
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center justify-content-center p-3 link-light text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,6 +25,7 @@
       </ul>
     </div>
   </nav>
+
   <div class="col text-white">
     <div class="container h-100 pt-6" [@routeAnimations]="getRouteAnimationData()">
       <router-outlet></router-outlet>

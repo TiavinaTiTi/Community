@@ -1,11 +1,12 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {AsyncPipe} from "@angular/common";
+import {AsyncPipe, JsonPipe} from "@angular/common";
 import {ItemPublicationComponent} from "../item-publication/item-publication.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ItemCardPersonComponent} from "../../shared/components/item-card-person/item-card-person.component";
 import {MemberModel} from "../../core/models/member.model";
 import {MemberService} from "../../shared/services/memberService/member.service";
-import {Observable, of} from "rxjs";
+import {count, Observable, of} from "rxjs";
+import {MemberPageModel} from "../../core/models/member-page.model";
 
 @Component({
   selector: 'app-team-page',
@@ -15,30 +16,28 @@ import {Observable, of} from "rxjs";
     ItemPublicationComponent,
     ReactiveFormsModule,
     FormsModule,
-    ItemCardPersonComponent
+    ItemCardPersonComponent,
+    JsonPipe
   ],
   templateUrl: './team-page.component.html',
   styleUrl: './team-page.component.scss'
 })
-export class TeamPageComponent implements OnInit{
+export class TeamPageComponent{
   search: string = ''
-  members$!: Observable<MemberModel[]>;
-
   private memberService: MemberService = inject(MemberService)
-
-
-  ngOnInit() {
-    this.getAllMembers()
-  }
-
-  getAllMembers(){
-    this.members$ = this.memberService.getAllMembers()
-  }
+  members$: Observable<MemberPageModel> = this.memberService.getAllMembers()
+  pages: number[] = [1,2,3]
 
   searchTraining() {
+    console.log('searchTraining')
     setTimeout(()=>{
-      let data = this.memberService.filterMember(this.search)
-      this.members$ = of(data)
+      let data$:Observable<MemberPageModel> = this.memberService.filterMember(this.search)
+      this.members$ = data$
     }, 200)
   }
+
+  log(){
+    console.log('log')
+  }
+
 }
