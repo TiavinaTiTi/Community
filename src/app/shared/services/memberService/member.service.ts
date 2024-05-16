@@ -9,10 +9,10 @@ import {MemberPageModel} from "../../../core/models/member-page.model";
 export class MemberService {
 
   dataInit: MemberModel[] = [
-    {id: 1, pseudo: 'tiavina', fullName: 'randrianoelison tiavina mandimbisoa'},
-    {id: 2, pseudo: 'dom', fullName: 'dominique marcel augustin'},
-    {id: 3, pseudo: 'jass', fullName: 'rantoniaina jaspiere'},
-    {id: 4, pseudo: 'tiff', fullName: 'rakotomavo tiffany'},
+    {id: 1, pseudo: 'tiavina', name: 'randrianoelison', firstName: 'tiavina mandimbisoa'},
+    {id: 2, pseudo: 'dom', name: 'dominique', firstName: 'marcel augustin'},
+    {id: 3, pseudo: 'jass', name: 'rantoniaina', firstName: 'jaspiere'},
+    {id: 4, pseudo: 'tiff', name: 'rakotomavo', firstName: 'tiffany'},
   ]
 
   dataInitPage: MemberPageModel = {
@@ -49,7 +49,7 @@ export class MemberService {
     let data$ = this.getAllMembers();
     data$.subscribe({
       next: value => {
-        member = value.content.filter((value)=> value.fullName.toLowerCase().includes(inputSearch.toLowerCase()) || value.pseudo.toLowerCase().includes(inputSearch.toLowerCase()))
+        member = value.content.filter((value)=> value.name.toLowerCase().includes(inputSearch.toLowerCase()) || value.firstName.toLowerCase().includes(inputSearch.toLowerCase()) || value.pseudo.toLowerCase().includes(inputSearch.toLowerCase()))
       }
     })
     structMember.content = member

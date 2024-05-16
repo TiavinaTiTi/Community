@@ -14,7 +14,11 @@
             {{ member.pseudo | titlecase}}
           </a>
         </div>
-        <p class="fs-7 mb-0">{{ formatFullName(member.fullName) }}</p>
+        <p class="fs-7 mb-0">
+          {{ member.name | uppercase}}
+          <br>
+          {{ member.firstName | titlecase }}
+        </p>
       </div>
     </div>
   </div>

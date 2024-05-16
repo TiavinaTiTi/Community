@@ -1,12 +1,13 @@
 import {Component, Input} from '@angular/core';
 import {MemberModel} from "../../../core/models/member.model";
-import {TitleCasePipe} from "@angular/common";
+import {TitleCasePipe, UpperCasePipe} from "@angular/common";
 
 @Component({
   selector: 'app-item-card-person',
   standalone: true,
   imports: [
-    TitleCasePipe
+    TitleCasePipe,
+    UpperCasePipe
   ],
   templateUrl: './item-card-person.component.html',
   styleUrl: './item-card-person.component.scss'
