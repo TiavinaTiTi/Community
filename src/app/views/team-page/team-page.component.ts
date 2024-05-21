@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {AsyncPipe, JsonPipe} from "@angular/common";
+import {AsyncPipe, JsonPipe, TitleCasePipe, UpperCasePipe} from "@angular/common";
 import {ItemPublicationComponent} from "../item-publication/item-publication.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ItemCardPersonComponent} from "../../shared/components/item-card-person/item-card-person.component";
@@ -19,16 +19,25 @@ import {PageableComponent} from "../../shared/components/pageable/pageable.compo
     FormsModule,
     ItemCardPersonComponent,
     JsonPipe,
-    PageableComponent
+    PageableComponent,
+    TitleCasePipe,
+    UpperCasePipe
   ],
   templateUrl: './team-page.component.html',
   styleUrl: './team-page.component.scss'
 })
-export class TeamPageComponent{
+export class TeamPageComponent implements OnInit{
   search: string = ''
   private memberService: MemberService = inject(MemberService)
-  members$: Observable<MemberPageModel> = this.memberService.getAllMembers()
+  // members$: Observable<MemberPageModel> = this.memberService.getAllMembers()
+  members$!: Observable<MemberPageModel>
   pages: number[] = [1,2,3]
+
+  contentTemplate: number[] = [1,2,3,4,5,6,7,8,9,10,11,12]
+
+  ngOnInit() {
+    this.chargeData()
+  }
 
   searchTraining() {
     console.log('searchTraining')
@@ -40,6 +49,12 @@ export class TeamPageComponent{
 
   log(){
     console.log('log')
+  }
+
+  chargeData(){
+    setTimeout(()=>{
+      this.members$ =  this.memberService.getAllMembers()
+    }, 5000)
   }
 
 }

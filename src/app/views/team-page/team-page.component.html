@@ -15,7 +15,49 @@
         </div>
         <app-pageable [pageable]="members.pageable"></app-pageable>
       </div>
-
+    } @else {
+      <div class="col-12 col-md-9">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-gap-2">
+          @for(item of contentTemplate; track $index){
+            <div class="col h-100">
+              <div class="card text-white bg-dark-2 position-relative h-100">
+                <a class="link-light position-absolute end-0 me-1">
+                  <svg width="15" height="15" class="bg-secondary rounded-circle"></svg>
+                </a>
+                <div class="card-body py-1 px-1 d-flex">
+                  <div class="d-flex align-items-center justify-content-center position-relative">
+                    <svg width="50" height="50" class="bg-secondary rounded-circle"></svg>
+                  </div>
+                  <div class="d-flex flex-column ps-1">
+                    <div class="card-title mb-0 fw-semibold">
+                      <a class="text-decoration-none text-warning">
+                        <svg width="80%" height="10px" class="bg-dark"></svg>
+                      </a>
+                    </div>
+                    <p class="fs-7 mb-0">
+                      <svg width="100%" height="10px" class="bg-dark"></svg>
+                      <br>
+                      <svg width="100%" height="10px" class="bg-dark"></svg>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <nav aria-label="Pagination" class="mt-2 d-flex justify-content-center">
+          <ul class="pagination pagination-sm mb-0 gap-1">
+            @for (page of pages; track $index){
+              <li class="page-item">
+                <a class="page-link bg-dark-2 border-0">
+                  <svg width="10" height="15" class="bg-dark"></svg>
+                </a>
+              </li>
+            }
+          </ul>
+        </nav>
+<!--        <app-pageable [pageable]="members.pageable"></app-pageable>-->
+      </div>
     }
     <div class="col-12 col-md-3 d-flex flex-column gap-1 mt-4 mt-md-0">
       <div class="card bg-dark-2">
