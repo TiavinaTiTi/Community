@@ -33,7 +33,7 @@ export class TeamPageComponent implements OnInit{
   members$!: Observable<MemberPageModel>
   pages: number[] = [1,2,3]
 
-  contentTemplate: number[] = [1,2,3,4,5,6,7,8,9,10,11,12]
+  contentTemplate: number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,16]
 
   ngOnInit() {
     this.chargeData()
