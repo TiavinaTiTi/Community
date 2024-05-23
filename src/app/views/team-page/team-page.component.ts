@@ -8,6 +8,9 @@ import {MemberService} from "../../shared/services/memberService/member.service"
 import {count, Observable, of} from "rxjs";
 import {MemberPageModel} from "../../core/models/member-page.model";
 import {PageableComponent} from "../../shared/components/pageable/pageable.component";
+import {SloganModel} from "../../core/models/slogan.model";
+import {SloganService} from "../../shared/services/sloganService/slogan.service";
+import {ItemCardSloganComponent} from "../../shared/components/item-card-slogan/item-card-slogan.component";
 
 @Component({
   selector: 'app-team-page',
@@ -21,7 +24,8 @@ import {PageableComponent} from "../../shared/components/pageable/pageable.compo
     JsonPipe,
     PageableComponent,
     TitleCasePipe,
-    UpperCasePipe
+    UpperCasePipe,
+    ItemCardSloganComponent
   ],
   templateUrl: './team-page.component.html',
   styleUrl: './team-page.component.scss'
@@ -29,14 +33,17 @@ import {PageableComponent} from "../../shared/components/pageable/pageable.compo
 export class TeamPageComponent implements OnInit{
   search: string = ''
   private memberService: MemberService = inject(MemberService)
+  private sloganService: SloganService = inject(SloganService)
   // members$: Observable<MemberPageModel> = this.memberService.getAllMembers()
   members$!: Observable<MemberPageModel>
   pages: number[] = [1,2,3]
+  slogan$!: Observable<SloganModel[]>
 
   contentTemplate: number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,16]
 
   ngOnInit() {
-    this.chargeData()
+    this.chargeDataMembers()
+    this.chargeDataSlogans()
   }
 
   searchTraining() {
@@ -51,9 +58,15 @@ export class TeamPageComponent implements OnInit{
     console.log('log')
   }
 
-  chargeData(){
+  chargeDataMembers(){
     setTimeout(()=>{
       this.members$ =  this.memberService.getAllMembers()
+    }, 5000)
+  }
+
+  chargeDataSlogans(){
+    setTimeout(()=>{
+      this.slogan$ = this.sloganService.getAllSlogan()
     }, 5000)
   }
 
