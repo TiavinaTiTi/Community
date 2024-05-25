@@ -55,6 +55,8 @@ export class AppComponent {
     {icon: 'bi-telephone', title: 'contact', root: '/contact'},
   ]
 
+  menuLogin = {icon: 'bi-person-circle', title: 'login', root: '/login'}
+
   getRouteAnimationData() {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
