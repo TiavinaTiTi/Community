@@ -51,7 +51,7 @@ export class AppComponent {
   menus = [
     {icon: 'bi-house', title: 'home', root: '/home'},
     {icon: 'bi-people', title: 'team', root: '/team'},
-    {icon: 'bi-clipboard-check', title: 'training', root: '/training'},
+    // {icon: 'bi-clipboard-check', title: 'training', root: '/training'},
     {icon: 'bi-telephone', title: 'contact', root: '/contact'},
   ]
 
