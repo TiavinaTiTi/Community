@@ -52,6 +52,7 @@ export class AppComponent {
     {icon: 'bi-house', title: 'home', root: '/home'},
     {icon: 'bi-people', title: 'team', root: '/team'},
     // {icon: 'bi-clipboard-check', title: 'training', root: '/training'},
+    {icon: 'bi-layout-text-sidebar-reverse', title: 'document', root: '/docs'},
     {icon: 'bi-telephone', title: 'contact', root: '/contact'},
   ]
 
