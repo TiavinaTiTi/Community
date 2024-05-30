@@ -4,6 +4,8 @@ export interface DocumentModel {
   intervening: string,
   post: string,
   date: Date,
+  time: string,
   location: string,
-  lieu: string
+  document: string,
+  git: string
 }

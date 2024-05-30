@@ -1,7 +1,7 @@
 <div class="card border-0 bg-dark-2 text-light h-100">
   <div class="card-body">
     <div class="card-title">
-      <h4 class="fs-6">Fondamentale de Git</h4>
+      <h4 class="fs-6">{{document.theme}}</h4>
     </div>
     <div class="">
       <div class="">
@@ -10,9 +10,9 @@
             <svg class="bg-secondary me-2 border border-2" width="50" height="50"></svg>
             <div class="">
               <div class="card-text fw-bold text-warning">
-                RANDRIANOELISON Tiavina M.
+                {{ textPipeService.limitText(document.intervening, 25) }}
               </div>
-              <div class="card-text fs-7">Developpeur Fullstack</div>
+              <div class="card-text fs-7">{{ document.post }}</div>
             </div>
           </div>
           <div class="">
@@ -22,11 +22,11 @@
       <div class="">
         <div class="">
           <i class="bi-geo-alt text-warning me-1"></i>
-          ISSIG Soavimbaoka
+          {{ document.location }}
         </div>
         <div class="">
           <i class="bi-calendar2-event text-warning me-1"></i>
-          27 Avril 2024
+          {{ document.date | date: 'longDate' }}
         </div>
       </div>
     </div>

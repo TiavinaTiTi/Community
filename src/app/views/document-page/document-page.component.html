@@ -6,8 +6,10 @@
     <input type="text" [(ngModel)]="search" (input)="searchTraining()" class="form-control rounded-pill bg-dark-2 text-white" placeholder="Recherche...">
   </div>
   <div class="row row-cols-1 row-cols-md-3 d-flex row-gap-1">
-    <div class="col">
-      <app-item-document></app-item-document>
-    </div>
+    @for(item of documents | async; track item.id){
+      <div class="col">
+        <app-item-document [document]="item"></app-item-document>
+      </div>
+    }
   </div>
 </div>
