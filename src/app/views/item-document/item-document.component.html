@@ -27,6 +27,8 @@
         <div class="">
           <i class="bi-calendar2-event text-warning me-1"></i>
           {{ document.date | date: 'longDate' }}
+          <i class="bi-clock text-warning"></i>
+          {{ document.time.hours + 'h' + document.time.minutes}}
         </div>
       </div>
     </div>
