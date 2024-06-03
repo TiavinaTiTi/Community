@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {DocumentModel} from "../../../core/models/document.model";
 import {Observable, of} from "rxjs";
+import {MemberModel} from "../../../core/models/member.model";
+import {MemberPageModel} from "../../../core/models/member-page.model";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,17 @@ export class DocumentService {
 
   getAllDocuments(): Observable<DocumentModel[]>{
     return of(this.dataInit)
+  }
+
+  filterDocument(inputSearch: string) {
+    let docs : DocumentModel[] = [];
+    let data$:Observable<DocumentModel[]> = this.getAllDocuments();
+    data$.subscribe({
+      next: value => {
+        docs = value.filter((value)=>value.theme.toLowerCase().includes(inputSearch.toLowerCase()) || value.intervening.toLowerCase().includes(inputSearch.toLowerCase()))
+      }
+    })
+    return of(docs);
   }
 
 }

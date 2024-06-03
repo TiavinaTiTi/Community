@@ -31,7 +31,11 @@ export class DocumentPageComponent implements OnInit{
     this.chargeData()
   }
 
-  searchTraining() {}
+  searchTraining() {
+    setTimeout(()=>{
+      this.documents = this.documentService.filterDocument(this.search)
+    }, 200)
+  }
 
   chargeData(){
     setTimeout(()=>{
