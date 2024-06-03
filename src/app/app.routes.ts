@@ -8,6 +8,7 @@ import {ContactPageComponent} from "./views/contact-page/contact-page.component"
 import {TeamPageComponent} from "./views/team-page/team-page.component";
 import {LoginPageComponent} from "./views/login-page/login-page.component";
 import {DocumentPageComponent} from "./views/document-page/document-page.component";
+import {SignUpPageComponent} from "./views/sign-up-page/sign-up-page.component";
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: "full" },
   { path: 'home', component: HomePageComponent, data: { animation: 'home' } },
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'docs', component: DocumentPageComponent, data: {animation: 'docs'} },
   { path: 'contact', component: ContactPageComponent, data: { animation: 'contact' } },
   { path: 'login', component: LoginPageComponent, data: { animation: 'login' } },
+  { path: 'sign-up', component: SignUpPageComponent, data: { animation: 'sign-up' } },
   /*{ path: 'isRight', component: IsRightComponent, data: { animation: 'isRight'} },
   { path: 'isLeft', component: IsLeftComponent, data: { animation: 'isLeft' } },
   { path: 'isMeddle', component: IsMeddleComponent, data: { animation: 'isMeddle' } },*/
